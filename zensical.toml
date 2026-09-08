@@ -1,0 +1,193 @@
+[project]
+site_name = "fx5's Blog"
+site_url = "https://fx5sec.github.io/"
+# Fallback meta description, used on any page whose front matter omits its own.
+site_description = "Digital forensics articles, practical labs, and CTF write-ups, kept in the open as a working knowledge base."
+site_author = "fx5"
+
+# Rendered as raw HTML in the footer of every page, which makes it the right place
+# for the licence: it applies site-wide, not just to the About page.
+copyright = '&copy; 2026 fx5 &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code under <a href="https://opensource.org/license/mit">MIT</a>'
+
+use_directory_urls = true
+
+docs_dir = "docs"
+site_dir = "site"
+
+repo_url = "https://github.com/fx5sec/fx5sec.github.io"
+repo_name = "fx5sec/fx5sec.github.io"
+
+extra_css = ["stylesheets/extra.css"]  # layout and homepage styles
+# extra_javascript = ["javascripts/extra.js"]
+
+# -------- Navigation -------- #
+nav = [
+  { "Home" = "index.md" },
+  {"Write-ups" = [
+    "writeups/index.md"
+  ]},
+
+  # Existing article paths stay in place to preserve published URLs.
+  {"Articles" = [
+    "articles/index.md",
+    { "File systems and storage" = [
+      { "USN Journal" = "cheat-sheet/usn-journal.md" },
+      { "SQLite and the WAL" = "guides/sqlite-and-the-wal.md" },
+    ]},
+    { "Windows investigations" = [
+      { "Windows Event IDs" = "cheat-sheet/windows-event-ids.md" },
+    ]},
+    { "Browser Artifacts" = [
+      "guides/browser-artifacts/index.md",
+      { "Profiles and files" = "guides/browser-artifacts/profiles.md" },
+      { "WebCacheV01.dat"    = "guides/browser-artifacts/windows-webcache.md" },
+      { "Session files"      = "guides/browser-artifacts/sessions.md" },
+      { "Cache"              = "guides/browser-artifacts/cache.md" },
+      { "Timestamps"         = "guides/browser-artifacts/timestamps.md" },
+    ]},
+    { "Memory and supporting artifacts" = [
+      { "Volatility 3" = "cheat-sheet/volatility3.md" },
+    ]},
+  ]},
+
+  { "To-Do List" = "to-do-list.md" },
+  {"About" = "about/index.md"},
+]
+
+[project.theme]
+# variant = "modern"
+# custom_dir = "overrides"
+# favicon = "images/favicon.png"
+language = "en"
+
+features = [
+  # "announce.dismiss",     # inert until an announcement bar exists in overrides/
+  # "content.action.edit",
+  # "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "content.lazy",            # defer offscreen images, matters once write-ups carry screenshots
+  # "header.autohide",
+  # "navigation.expand",
+
+  # Navigation
+  "navigation.tabs",         # top-level sections become horizontal tabs
+  "navigation.tabs.sticky",  # tabs stay reachable on long reference pages
+  "navigation.indexes",      # a tab click lands on its index.md, not a dead node
+  "navigation.path",         # breadcrumbs: write-ups nest two levels deep
+  #"navigation.sections",
+
+
+  "navigation.footer",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.instant.preview",  # hovering an internal link previews the target section
+  # "navigation.instant.progress",
+  # "navigation.prune",
+
+
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "toc.follow",              # the table of contents tracks the current section while scrolling
+  # "toc.integrate",
+]
+
+[project.theme.icon]
+logo = "lucide/fingerprint"
+
+# Google Fonts family names are case-sensitive. "Jetbrains Mono" returns HTTP 400
+# on its own and is silently dropped from the combined request, leaving code blocks
+# on the browser's default monospace. The capital B is load-bearing.
+[project.theme.font]
+text = "Inter"
+code = "JetBrains Mono"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+
+
+
+# -------- Markdown extensions -------- #
+#
+# Declaring this table REPLACES Zensical's defaults wholesale, it does not merge
+# with them. Anything omitted here is off, and any extension added to Zensical's
+# defaults in a future release will not reach this project until copied in here.
+[project.markdown_extensions]
+abbr        = {}  # acronym tooltips, so DFIR jargon stays readable
+admonition  = {}
+attr_list   = {}  # required by grids and buttons
+def_list    = {}
+footnotes   = {}
+md_in_html  = {}  # required by grids and image captions
+
+toc.permalink = true
+
+# arithmatex removed: it emits math markup on every page, but MathJax was only
+# ever loaded inline by the demo home page, so formulas rendered nowhere else.
+# pymdownx.arithmatex.generic = true
+
+pymdownx.betterem  = {}
+pymdownx.caret     = {}
+pymdownx.details   = {}
+
+
+pymdownx.emoji.emoji_generator      = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index          = "zensical.extensions.emoji.twemoji"
+
+
+# Syntax highlighting (Pygments)
+pymdownx.highlight.anchor_linenums     = true      # linkable line numbers, to cite a specific line
+pymdownx.highlight.line_spans          = "__span"  # required by hl_lines
+pymdownx.highlight.pygments_lang_class = true      # required by content.code.annotate
+
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+# pymdownx.snippets.base_path = "includes"
+
+# -------- Mermaid -------- #
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
+
+
+
+# -------- Social links -------- #
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/fx5sec"
+
+[[project.extra.social]]
+icon = "simple/cyberdefenders"
+link = "https://cyberdefenders.org/p/fx5/"
+
+[[project.extra.social]]
+icon = "simple/hackthebox"
+link = "https://app.hackthebox.com/users/2571562"

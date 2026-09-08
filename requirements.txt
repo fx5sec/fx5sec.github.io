@@ -1,0 +1,2 @@
+# Match the Zensical version used to validate this site's configuration.
+zensical==0.0.57
