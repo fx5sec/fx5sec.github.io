@@ -314,7 +314,7 @@ The second attempt goes further:
 
 [![BackupAgent2 restoring three files before cross-device link and error 102 messages](../../../assets/fcsc/2025/icompromise-second-restore-errors.png)](../../../assets/fcsc/2025/icompromise-second-restore-errors.png)
 
-At `13:40:27` UTC, BackupAgent2 begins restoring three files. A `rename` then fails with `Cross-device link`, followed by `MBErrorDomain(102)`. I cannot determine the exact cause from these redacted messages. TrollRestore deliberately includes a `crash_on_purpose` path in its crafted backup, so a restore error alone does not prove that the helper replacement failed. The later helper execution is the stronger evidence.
+At `13:40:27` UTC, BackupAgent2 begins restoring three files. A `rename` then fails with `Cross-device link`, followed by `MBErrorDomain(102)`. I cannot determine the exact cause from these redacted messages. TrollRestore deliberately includes a `crash_on_purpose` path in its crafted backup, so a restore error alone does not prove that the helper replacement failed. The later helper execution is the stronger evidence. [Full explanation](https://gist.github.com/leminlimez/c602c067349140fe979410ef69d39c28/01a260d9dc8420d059594040e6807fd467836679#sparserestore) of the CVE / Sparserestore exploit by Lemin Limez. 
 
 The script next requests a restart:
 
