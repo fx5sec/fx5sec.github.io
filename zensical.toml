@@ -24,7 +24,21 @@ extra_css = ["stylesheets/extra.css"]  # layout and homepage styles
 nav = [
   { "Home" = "index.md" },
   {"Write-ups" = [
-    "writeups/index.md"
+    "writeups/index.md",
+    { "FCSC" = [
+      { "2025" = [
+        "writeups/fcsc/2025/index.md",
+        { "iCrash" = "writeups/fcsc/2025/icrash.md" },
+        { "iDevice" = "writeups/fcsc/2025/idevice.md" },
+        { "iWiFi" = "writeups/fcsc/2025/iwifi.md" },
+        { "iTreasure" = "writeups/fcsc/2025/itreasure.md" },
+        { "iNvisible" = "writeups/fcsc/2025/invisible.md" },
+        { "iBackdoor 1/2" = "writeups/fcsc/2025/ibackdoor-1.md" },
+        { "iBackdoor 2/2" = "writeups/fcsc/2025/ibackdoor-2.md" },
+        { "iC2" = "writeups/fcsc/2025/ic2.md" },
+        { "iCompromise" = "writeups/fcsc/2025/icompromise.md" },
+      ]},
+    ]},
   ]},
 
   # Existing article paths stay in place to preserve published URLs.
